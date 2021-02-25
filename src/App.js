@@ -5,6 +5,7 @@ import React from 'react'
 import LandingPage from './landingPage'
 import NewGame from './newGame'
 import history from './history'
+import Votes from './votes'
 
 
 class App extends React.Component{
@@ -15,6 +16,7 @@ class App extends React.Component{
         <Switch>
           <Route exact path ='/' component = {LandingPage}/>
           <Route exact path ='/newgame/:id' component = {NewGame} />
+          <Route exact path = '/vote/:id' component = {Votes} />
         </Switch>
       </Router>
     );

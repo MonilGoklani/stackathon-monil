@@ -9,12 +9,14 @@ import Answers from './answers'
 const firestore = firebase.firestore();
 const gameCode = window.localStorage.getItem("gameCode") * 1;
 const docRef = firestore.doc(`/${gameCode}/players`);
+const maxRoundTime = 30
+const maxRounds = 5
 
 class LoadGame extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      counter: 30,
+      counter: maxRoundTime,
       round: 1,
     };
     this.startCounter = this.startCounter.bind(this);
@@ -22,12 +24,15 @@ class LoadGame extends React.Component {
 
   startCounter() {
     let timerId = setInterval(() => {
-      if (this.state.round > 5) clearInterval(timerId);
+      if (this.state.round > maxRounds) {
+        clearInterval(timerId);
+        history.push(`/vote/${this.props.player}`)
+        }
       else if (this.state.counter > 0) {
         let counter = this.state.counter - 1;
         this.setState({ counter });
       } else {
-        this.setState({ counter: 30 });
+        this.setState({ counter: maxRoundTime });
         this.setState({ round: this.state.round + 1 });
       }
     }, 1000);
@@ -47,7 +52,7 @@ class LoadGame extends React.Component {
     // if(question<5) startCounter()
     return (
       <div>
-        <p>{round<6?counter:''}</p>
+        <p>{round<=maxRounds?counter:''}</p>
         {counter > 0 ? (
           <p>{question}</p>
         ) : (
