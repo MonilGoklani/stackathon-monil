@@ -52,13 +52,22 @@ class LoadGame extends React.Component {
     // if(question<5) startCounter()
     return (
       <div>
-        <p>{round<=maxRounds?counter:''}</p>
-        {counter > 0 ? (
-          <p>{question}</p>
-        ) : (
-          ""
-        )}
-        <Answers player={player} round={round}/>
+        <div className='counter'>
+          <div className ='counterbox'>
+            <p>{round<=maxRounds?counter:''}</p>
+          </div>
+        </div>
+        <div>
+          {counter > 0 ? (
+            <div className='question'>
+            <h3>Round {round}</h3>
+            <p>{question}</p>
+            <Answers player={player} round={round}/>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     );
   }

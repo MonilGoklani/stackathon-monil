@@ -3,19 +3,25 @@ import './App.css';
 import React from 'react'
 import firebase from './firebase'
 import history from './history';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 const firestore = firebase.firestore();
 
-class LandingPage extends React.Component{
-  constructor() {
-    super()
-    this.state = {
-      name: 'World'
-    }
-    this.enterGame = this.enterGame.bind(this)
-  }
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '20ch',
+    },
+  },
+}));
 
-async getPlayers(docRef){
+const LandingPage = (props) => {
+
+const classes = useStyles();
+const getPlayers = async(docRef)=>{
     let myData = {}
     await docRef.get().then(function(doc){
       if(doc && doc.exists){
@@ -25,15 +31,13 @@ async getPlayers(docRef){
     return myData
 }
 
-async enterGame(ev){
+const enterGame = async(ev) =>{
     ev.preventDefault()
     let gameCode = document.querySelector('#gameCode').value
     let playerName = document.querySelector('#playerName').value
-    window.localStorage.setItem('gameCode',gameCode.toString())
-    window.sessionStorage.setItem('name',playerName.toString())
     const docRef = firestore.doc(`/${gameCode}/players`)
     
-    let playerObject = await this.getPlayers(docRef)
+    let playerObject = await getPlayers(docRef)
     let players = Object.values(playerObject) || []
 
     if(!players.includes(playerName)){
@@ -46,24 +50,25 @@ async enterGame(ev){
         await docRef.set({...playerObject,[playerField]:playerValue})
         history.push(`/newgame/${playerField}`)
     }else{
-        alert('Create New Game by entering a unique Game Code')
+        alert('Game Full : Create New Game by entering a unique Game Code')
     }
   }
 
-  render(){
-    const {enterGame} = this
     return (
       <div className="App">
-        <header className="App-header">
-            <p id='title'>Enter Name</p>
-            <input type='textfield' id='playerName'></input>
-            <p id='title'>Enter Game Code</p>
-            <input type='textfield' id='gameCode'></input>
-            <button onClick={(ev)=>enterGame(ev)}>submit</button>
-        </header>
+        <img className = 'background-image' src ='../brickwall.jpg' />
+        <div className="App-header">
+            <p className = 'gametitle'>WiseCracker!</p>
+            <form className={classes.root}>
+            <p className='title'>Name</p>
+            <TextField type='textfield' id='playerName' variant='filled'/>
+            <p className='title'>Game Code</p>
+            <TextField type='textfield' id='gameCode' variant='filled'/>
+            </form>
+            <Button variant="contained" color="secondary" component="span" onClick={(ev)=>enterGame(ev)}>Enter Game</Button>
+        </div>
       </div>
     );
-  }
 }
 
 export default LandingPage;

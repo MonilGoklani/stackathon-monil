@@ -36,19 +36,24 @@ async getPlayers(docRef){
   }
 
   render(){
-    console.log(this.props)
     const {players} = this.state
     const {enterGame} = this
     return (
-      <div>
-        <div className="newGame">
+      <div id='newgame'>
+        <img className = 'background-image' src ='../brickwall.jpg'/>
+        <div className = 'title'>
+          {players.length<4?
+          (<h3>...Waiting for more players</h3>):
+          <h3>IT'S ON LIKE DONKEY KONG</h3>}
+        </div>
+        <div className="listofplayers">
             {players.map(player=>{
                 return(
                     <p>{player}</p>
                 )
             })}
         </div>
-        <div>
+        <div className='loadGame'>
           {players.length>=4?(
               <LoadGame player = {this.props.match.params.id}/>
           ):'Waiting for All players'}

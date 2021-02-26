@@ -3,6 +3,18 @@ import "./App.css";
 import React from "react";
 import firebase from "./firebase";
 import history from "./history";
+import { makeStyles,withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+const styles = (theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '20ch',
+    },
+  },
+});
 
 
 const firestore = firebase.firestore();
@@ -48,16 +60,19 @@ componentDidMount () {
   }
 
   render() {
+    const {classes} = this.props
     console.log('Answers ',this.state.answers)
     const {submitAnswer} = this
     const {round,player} = this.props
     return (
-      <div>
-          <input id='answer'></input>
-          <button onClick={(ev)=>submitAnswer(ev,round,player)}>Submit</button>
+      <div className='answers'>
+            <form className={classes.root}>
+            <TextField type='textfield' id='answer' variant='filled'/>
+            </form>
+          <Button variant="contained" color="secondary" component="span" onClick={(ev)=>submitAnswer(ev,round,player)}>Submit</Button>
       </div>
     );
   }
 }
 
-export default Answers;
+export default withStyles(styles)(Answers);

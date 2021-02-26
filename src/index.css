@@ -11,3 +11,130 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.background-image {
+  opacity: 0.9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.gametitle {
+  font-family:'Nosifer';
+  font-size: 8vw;
+  margin: 0;
+  color:rgb(255, 208, 0);
+  -webkit-text-stroke: 3px black;
+}
+
+.title {
+  font-family: 'Shojumaru';
+  font-weight: 700;
+  font-size: 4.5vw;
+  color:rgb(0, 0, 0);
+  -webkit-text-stroke: 0.3px orange;
+  text-shadow: 2px 2px #000000
+}
+
+.title>h3{
+  margin: 2rem 0 1rem 0;
+}
+
+.MuiInputBase-input{
+  font-size: 30px !important;
+  color: rgb(255, 211, 182) !important;
+  padding: 0!important;
+  background-color: black !important;
+  opacity: 0.7;
+}
+
+.MuiButton-containedSecondary {
+  background-color: black !important;
+  color: rgb(255, 211, 182) !important;
+  font-size: 20px !important;
+}
+
+#newgame {
+  width: 100vw;
+  height: 100vh;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listofplayers{
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.listofplayers>p{
+  font-family: 'Delius Swash Caps';
+  font-size: 3vw;
+  margin:0;
+  padding: 0.4rem;
+  color: black;
+  background-color: rgb(255, 208, 0);
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.loadGame{
+  margin:0;
+}
+
+.counter{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.counterbox{
+  background-color: black !important;
+  height:8vw;
+  width: 8vw;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.counterbox>p{
+  text-align: center;
+  margin:0;
+  font-size: 5vw;
+  color:orange
+
+}
+
+.question{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.question>h3{
+  margin:0;
+  font-size: 3vw;
+  text-decoration: underline;
+  color: white
+}
+
+.question>p{
+  margin:0.5rem 0 0 0;
+  font-size: 5vw;
+  font-family:'Delius Swash Caps';
+  font-weight: bolder;
+  color:rgb(255, 208, 0);
+  text-shadow: 2px 2px #000000
+}
+
+.answers{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+}
