@@ -56,7 +56,7 @@ async getPlayers(docRef){
         <div className='loadGame'>
           {players.length>=4?(
               <LoadGame player = {this.props.match.params.id}/>
-          ):'Waiting for All players'}
+          ):''}
         </div>
       </div>
     );

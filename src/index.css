@@ -57,6 +57,20 @@ code {
   font-size: 20px !important;
 }
 
+.MuiButton-contained {
+  background-color: black !important;
+  color: rgb(255, 208, 0) !important;
+  font-size: 20px !important;
+}
+
+.MuiButton-containedPrimary {
+  background-color: rgb(255, 208, 0) !important;
+  color: rgb(0, 0, 0) !important;
+  font-size: 4vh !important;
+  box-shadow: 3px 3px black !important;
+  margin:0.5rem !important
+}
+
 #newgame {
   width: 100vw;
   height: 100vh;
@@ -93,10 +107,26 @@ code {
   margin-top: 1rem;
 }
 
+.votecounter{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.votecounter>h3{
+  font-family: 'Shojumaru';
+  font-weight: 700;
+  font-size: 4.5vw;
+  /* color:rgb(0, 0, 0); */
+  -webkit-text-stroke: 0.3px rgb(7, 7, 7);
+  text-shadow: 2px 2px #000000;
+  color:rgb(255, 208, 0);
+}
+
 .counterbox{
   background-color: black !important;
-  height:8vw;
-  width: 8vw;
+  height:6vw;
+  width: 6vw;
   border-radius: 40px;
   display: flex;
   flex-direction: column;
@@ -106,7 +136,7 @@ code {
 .counterbox>p{
   text-align: center;
   margin:0;
-  font-size: 5vw;
+  font-size: 3vw;
   color:orange
 
 }
@@ -119,22 +149,81 @@ code {
 
 .question>h3{
   margin:0;
-  font-size: 3vw;
   text-decoration: underline;
   color: white
 }
 
 .question>p{
   margin:0.5rem 0 0 0;
-  font-size: 5vw;
+  font-size: 7vh;
   font-family:'Delius Swash Caps';
   font-weight: bolder;
   color:rgb(255, 208, 0);
-  text-shadow: 2px 2px #000000
+  text-shadow: 2px 2px #000000;
+  text-align: center;
 }
 
 .answers{
   display: flex;
   flex-direction: column;
   align-items:center;
+}
+
+.answerList{
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 30vh;
+}
+
+.winningAnswer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family:'Delius Swash Caps';
+  font-weight: bolder;
+  color:rgb(0, 0, 0);
+  font-size: 4vh;
+  text-align: center;
+}
+
+.winningAnswer>h1{
+  margin:0;
+  font-family:'Shojumaru';
+  font-size: 10vh;
+  font-weight: bolder;
+  color:rgb(255, 208, 0);
+  text-shadow: 2px 2px #000000;
+  text-align: center;
+}
+
+.voteQuestion{
+  font-family:'Shojumaru';
+  font-size: 5vh;
+  font-weight: bolder;
+  color:rgb(255, 208, 0);
+  -webkit-text-stroke: 0.3px rgb(7, 7, 7);
+  text-align: center;
+}
+
+.gameover{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family:'Shojumaru';
+  font-weight: bolder;
+  color:rgb(255, 208, 0);
+  -webkit-text-stroke: 0.3px rgb(7, 7, 7);
+}
+
+.gameover>h1{
+  font-family:'Shojumaru';
+  font-size: 20vh;
+  font-weight: bolder;
+  color:rgb(255, 208, 0);
+  -webkit-text-stroke: 0.3px rgb(7, 7, 7);
 }

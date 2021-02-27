@@ -3,14 +3,14 @@ import "./App.css";
 import React from "react";
 import firebase from "./firebase";
 import history from "./history";
-import questionBank from './questionBank'
-import Answers from './answers'
+import questionBank from "./questionBank";
+import Answers from "./answers";
 
 const firestore = firebase.firestore();
 const gameCode = window.localStorage.getItem("gameCode") * 1;
 const docRef = firestore.doc(`/${gameCode}/players`);
-const maxRoundTime = 30
-const maxRounds = 5
+const maxRoundTime = 30;
+const maxRounds = 3;
 
 class LoadGame extends React.Component {
   constructor(props) {
@@ -26,9 +26,8 @@ class LoadGame extends React.Component {
     let timerId = setInterval(() => {
       if (this.state.round > maxRounds) {
         clearInterval(timerId);
-        history.push(`/vote/${this.props.player}`)
-        }
-      else if (this.state.counter > 0) {
+        history.push(`/vote/${this.props.player}`);
+      } else if (this.state.counter > 0) {
         let counter = this.state.counter - 1;
         this.setState({ counter });
       } else {
@@ -43,26 +42,23 @@ class LoadGame extends React.Component {
   }
 
   render() {
-    
     const { counter } = this.state;
     const { round } = this.state;
-    const { player } = this.props
-    const question = questionBank[round]
-    // const {startCounter} = this
-    // if(question<5) startCounter()
+    const { player } = this.props;
+    const question = questionBank[round];
     return (
       <div>
-        <div className='counter'>
-          <div className ='counterbox'>
-            <p>{round<=maxRounds?counter:''}</p>
+        <div className="counter">
+          <div className="counterbox">
+            <p>{round <= maxRounds ? counter : ""}</p>
           </div>
         </div>
         <div>
-          {counter > 0 ? (
-            <div className='question'>
-            <h3>Round {round}</h3>
-            <p>{question}</p>
-            <Answers player={player} round={round}/>
+          {counter < maxRoundTime ? (
+            <div className="question">
+              <h3>Round {round}</h3>
+              <p>{question}</p>
+              <Answers player={player} round={round} />
             </div>
           ) : (
             ""
