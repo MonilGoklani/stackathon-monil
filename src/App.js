@@ -9,10 +9,27 @@ import Votes from './votes'
 import GameOver from './gameover'
 
 
+//const audio = document.createElement('audio')
+//const audio = new Audio('https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3')
+
 class App extends React.Component{
 
+  // start(){
+  //  // audio.src='public/intro.wav'
+  //  // audio.load();
+  //   audio.play()
+  // }
+
+  // componentDidMount(){
+  //   this.start()
+  // }
+  
+
   render(){
+    const {start} = this
     return (
+      <>
+      {/* <button onClick={start}>Start</button> */}
       <Router history={history}>
         <Switch>
           <Route exact path ='/' component = {LandingPage}/>
@@ -21,6 +38,7 @@ class App extends React.Component{
           <Route exact path = '/gameover' component = {GameOver} />
         </Switch>
       </Router>
+      </>
     );
   }
 }

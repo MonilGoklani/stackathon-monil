@@ -86,7 +86,9 @@ code {
   justify-content: space-evenly;
 }
 
-.listofplayers>p{
+
+
+.currentPlayer{
   font-family: 'Delius Swash Caps';
   font-size: 3vw;
   margin:0;
@@ -96,6 +98,18 @@ code {
   border-radius: 20px;
   font-weight: bold;
 }
+
+.otherPlayers{
+  font-family: 'Delius Swash Caps';
+  font-size: 3vw;
+  margin:0;
+  padding: 0.4rem;
+  color: rgb(255, 208, 0);
+  background-color: black;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
 
 .loadGame{
   margin:0;

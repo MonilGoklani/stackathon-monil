@@ -9,5 +9,6 @@ firebase.initializeApp({
     appId: "1:476914631120:web:cb16ed40115ae7f0a779d5",
     measurementId: "G-0D403LEFB0"
   })
+  
 
   export default firebase

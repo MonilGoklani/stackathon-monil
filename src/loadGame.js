@@ -49,12 +49,14 @@ class LoadGame extends React.Component {
     return (
       <div>
         <div className="counter">
-          <div className="counterbox">
-            <p>{round <= maxRounds ? counter : ""}</p>
-          </div>
+          {round<=maxRounds && counter<maxRoundTime?(
+              <div className="counterbox">
+                <p>{counter}</p>
+              </div>
+          ):''}
         </div>
         <div>
-          {counter < maxRoundTime ? (
+          {counter < maxRoundTime?(
             <div className="question">
               <h3>Round {round}</h3>
               <p>{question}</p>

@@ -45,8 +45,6 @@ class Votes extends React.Component {
     await answerRef.onSnapshot((doc) => {
       if (doc && doc.exists) {
         myData = doc.data();
-        console.log(myData)
-        console.log('player ',this.props.match.params.id)
         const playerAnswer = myData[this.props.match.params.id]
         this.setState({
           answers: [...this.state.answers, Object.values(myData).filter(answer=>answer!==playerAnswer)],
@@ -128,6 +126,11 @@ class Votes extends React.Component {
           this.setState({winner})
         }
       });
+    // console.log(Object.keys(answers))
+    // console.log(answers)
+    // console.log(winner[0])
+    // let winningPlayer = Object.keys(answers).filter(player=>answers[player]===winner[0])
+    // console.log('winningPlayer: ',winningPlayer)
   }
 
   render() {
@@ -136,23 +139,22 @@ class Votes extends React.Component {
     const player = this.props.match.params.id;
     const answerList = answers.length ? answers[round - 1] : [];
     const { submitVote } = this;
-    console.log(winner)
     return (
       <div className="votes">
         <img className = 'background-image' src ='../brickwall.jpg'/>
         <div className="votecounter">
-            <h3>{counter < maxRoundTime-5 ? `You have ${maxRoundTime-5} seconds` : ''}</h3>
-            {counter<maxRoundTime-5?(
+            <h3>{counter < maxRoundTime-5 && round<=maxRounds? `You have ${maxRoundTime-5} seconds` : ''}</h3>
+            {counter<maxRoundTime-5 && round<=maxRounds?(
                 <div className="counterbox">
                     <p>{round <= maxRounds  && counter < maxRoundTime-5? counter : ""}</p>
                 </div>
             ):''}
         </div>
         <div className='voteQuestion'>
-            {counter<maxRoundTime-5?question:''}
+            {counter<maxRoundTime-5 && round<=maxRounds?question:''}
         </div>
         <div className='answerList'>
-        {answerList && counter<maxRoundTime-5
+        {answerList && counter<maxRoundTime-5 && round<=maxRounds
         ? answerList.map((answer) => (
             <Button variant="contained" color={selectedAnswer===answer?"default":'primary'} component="span" onClick={() => submitVote(answer, round, player)}>
                 {answer}

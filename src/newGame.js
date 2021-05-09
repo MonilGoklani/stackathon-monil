@@ -13,7 +13,8 @@ class NewGame extends React.Component{
   constructor() {
     super()
     this.state = {
-      players: []
+      players: [],
+      currentPlayer:''
     }
     this.getPlayers = this.getPlayers.bind(this)
   }
@@ -24,8 +25,10 @@ async getPlayers(docRef){
     await docRef.onSnapshot(doc=>{
       if(doc && doc.exists){
         myData = doc.data()
+        const currentPlayer = Object.values(myData).filter(player=>player===myData[this.props.match.params.id])[0]
         this.setState({
-          players:Object.values(myData)
+          players:Object.values(myData),
+          currentPlayer
         })
       }
     })
@@ -36,6 +39,7 @@ async getPlayers(docRef){
   }
 
   render(){
+    const {currentPlayer} = this.state
     const {players} = this.state
     const {enterGame} = this
     return (
@@ -46,10 +50,11 @@ async getPlayers(docRef){
           (<h3>...Waiting for more players</h3>):
           <h3>IT'S ON LIKE DONKEY KONG</h3>}
         </div>
-        <div className="listofplayers">
+        {/* <div className="listofplayers"> */}
+        <div className = 'listofplayers'>
             {players.map(player=>{
                 return(
-                    <p>{player}</p>
+                    <p className={player!==currentPlayer?'currentPlayer':'otherPlayers'}>{player}</p>
                 )
             })}
         </div>

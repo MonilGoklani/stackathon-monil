@@ -31,9 +31,11 @@ const getPlayers = async(docRef)=>{
     return myData
 }
 
+
 const enterGame = async(ev) =>{
     ev.preventDefault()
     let gameCode = document.querySelector('#gameCode').value
+    window.localStorage.setItem('gameCode',gameCode.toString())
     let playerName = document.querySelector('#playerName').value
     const docRef = firestore.doc(`/${gameCode}/players`)
     
@@ -58,6 +60,7 @@ const enterGame = async(ev) =>{
       <div className="App">
         <img className = 'background-image' src ='../brickwall.jpg' />
         <div className="App-header">
+            {/* <button onClick={start}>Start</button> */}
             <p className = 'gametitle'>WiseCracker!</p>
             <form className={classes.root}>
             <p className='title'>Name</p>
